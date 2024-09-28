@@ -4,7 +4,7 @@ current_grade = 0
 #Def function to update grade, takes a score and a weight and updates it to the grade
 def update_grade(score, weight):
     global current_grade
-    current_grade += + score * weight
+    current_grade += score * weight
 
 number_labs = int(input("Enter the number of labs completed: "))
 if number_labs > 6:
