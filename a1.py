@@ -1,51 +1,37 @@
-#Initializes grade, which will update throughout the program
-current_grade = 0]
-#Gets number of labs from user, verifies the number and adds it to the grade
-while True:
-    try:
-        number_labs = int(input("Enter the number of labs completed: "))
-        if number_labs < 6 and number_labs >= 0:
-            current_grade = number_labs / 6 * 20
-            break
-        elif number_labs > 0:
-            current_grade = 20
-            break
-    except (ValueError):
-        print("Enter a number")
+#Initializes users grade, will update with every received grade
+current_grade = 0
 
-#Gets number of quizzes from user, verifies the number and adds it to the grade
-while True:
-    try:
-        number_quiz = int(input("Enter the number of quizzes completed: "))
-        if number_quiz <= 6 and number_quiz >= 0:
-            current_grade += number_quiz/6 * 15
-            break
-        elif number_labs > 0:
-            current_grade += 15
-            break
-    except (ValueError):
-        print("Enter a number")
+#Def function to update grade, takes a score and a weight and updates it to the grade
+def update_grade(score, weight):
+    global current_grade
+    current_grade += + score * weight
 
-list_lab = []
-list_quiz = []
-list_assign = []
-list_midterm = []
+number_labs = int(input("Enter the number of labs completed: "))
+if number_labs > 6:
+    number_labs = 6
+update_grade(number_labs/6, 20)
 
-#Loops through assignments to get number
+
+number_quizzes = int(input("Enter the number of quizzes completed: "))
+if number_quizzes > 6:
+    number_quizzes = 6
+update_grade(number_quizzes/6, 15)
+
 for i in range(4):
-    while True:
-        try:
-            temp_grade = int(input(f"Enter grade for Assignment {i + 1}: "))
-            if temp_grade > 100 or temp_grade < 0:
-                print("Enter a valid grade")
-            else:
-                list_assign.append(temp_grade)
-                break
-        except (ValueError):
-            print("Enter a number")
+    assignment_grade = int(input(f"Enter grade for Assignment {i + 1}: "))
+    update_grade(assignment_grade/100, 4)
+
 for i in range(2):
-    while True:
-        try:
-            temp_grade
+    midterm_grade = int(input(f"Enter garde for Midterm {i + 1}: "))
+    update_grade(midterm_grade/100, 25/2)
+
+final_grade = int(input("Enter grade for Final Exam: "))
+update_grade(final_grade/100, 18)
+
+prep_grade = int(input("Enter grade for Midterm and Final Preperation: "))
+update_grade(prep_grade/100, 6)
+
+#Rounds and prints final grade for user
+print(f"Your grade is: {int(current_grade)}")
 
             
