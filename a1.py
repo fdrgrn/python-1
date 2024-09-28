@@ -2,7 +2,7 @@
 current_grade = 0
 
 #Def function to update grade, takes a score and a weight and updates it to the grade
-def update_grade(score :float, weight :int) -> float:
+def update_grade(score :float, weight :float) -> float:
     global current_grade
     current_grade += score * weight
 
