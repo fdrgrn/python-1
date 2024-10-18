@@ -39,7 +39,8 @@ def play_turn(p1, p2, deck, center_card, turn):
         choice = int(input("Do you want to PLAY A CARD(0) or DRAW A CARD(1)? "))
         if choice == 1:
             if len(deck) == 0:
-                print("The deck is empty, reshuffling...")
+                #Recheck later, might not be necessary or there might be a better way to do this
+                print("Since the deck is empty, it will be reshuffled")
                 reshuffle_deck(deck, center_card)
             cards.append(deck.pop())
         elif choice == 0:
