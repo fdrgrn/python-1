@@ -24,7 +24,7 @@ def play_turn(p1, p2, deck, center_card, turn):
     else:
         cards = p2
 
-    print(f"The center card is: {center_card}")
+    print(f"\n \n The center card is: {center_card}")
     print(f"Player {turn}, your cards are: {cards}")
 
     #Playable cards
@@ -41,15 +41,36 @@ def play_turn(p1, p2, deck, center_card, turn):
             if len(deck) == 0:
                 #Recheck later, might not be necessary or there might be a better way to do this
                 print("Since the deck is empty, it will be reshuffled")
-                reshuffle_deck(deck, center_card)
+                #reshuffle_deck(deck, center_card)
             cards.append(deck.pop())
         elif choice == 0:
             card_choice = int(input(f"Pick which card to play through its place in the order, starting from 1: "))
             if 1 <= card_choice <= len(available_cards):
                 deck.append(center_card)
-                center_card = cards.pop(card_choice - 1)
+                center_card = cards.pop(cards.index(available_cards[card_choice - 1]))
                 if len(cards) == 1:
                     print("UNO!")
+                if len(cards) == 0:
+                    print(f"Player {turn} wins!")
+                    return
+            else:
+                play_turn(p1, p2, deck, center_card, turn)
+
+    #Change turns
+    turn = 1 if turn == 2 else 2
+    play_turn(p1, p2, deck, center_card, turn)
+
+#Returns a list of all playable cards
+def playable_cards(cards, center_card):
+    return [card for card in cards if card[0] == center_card[0] or card[1] == center_card[1]]
+
+#RESHUFFLE
+#def reshuffle_deck(deck, center_card):
+    #deck.append(center_card)
+    #random.shuffle(deck)
+
+#START THE GAME HERE
+start_game()                    print("UNO!")
                 if len(cards) == 0:
                     print(f"Player {turn} wins!")
                     return
