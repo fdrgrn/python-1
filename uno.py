@@ -70,25 +70,4 @@ def playable_cards(cards, center_card):
     #random.shuffle(deck)
 
 #START THE GAME HERE
-start_game()                    print("UNO!")
-                if len(cards) == 0:
-                    print(f"Player {turn} wins!")
-                    return
-            else:
-                play_turn(p1, p2, deck, center_card, turn)
-
-    #Change turns
-    turn = 1 if turn == 2 else 2
-    play_turn(p1, p2, deck, center_card, turn)
-
-#Returns a list of all playable cards
-def playable_cards(cards, center_card):
-    return [card for card in cards if card[0] == center_card[0] or card[1] == center_card[1]]
-
-#RESHUFFLE
-def reshuffle_deck(deck, center_card):
-    deck.append(center_card)
-    random.shuffle(deck)
-
-#START THE GAME HERE
 start_game()
